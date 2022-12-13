@@ -22,7 +22,7 @@ cd easyanno
 
 Fill the form (https://www.openbioinformatics.org/annovar/annovar_download_form.php), open your email, find the download link (like http://xxx/annovar.latest.tar.gz).
 
-Download ANNOVAR and hg38 refGene (hg19 refGene have been provided, donnot need to download):
+Download ANNOVAR and hg38 refGene (the ANNOVAR in this repository is only a softlink, you should download it agian):
 ```
 wget -c http://xxx/annovar.latest.tar.gz
 tar zxvf annovar.latest.tar.gz
