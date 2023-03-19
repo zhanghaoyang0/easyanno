@@ -27,7 +27,10 @@ Download ANNOVAR and hg38 refGene:
 wget -c http://xxx/annovar.latest.tar.gz
 tar zxvf annovar.latest.tar.gz
 annovar/annotate_variation.pl -buildver hg38 -downdb -webfrom annovar refGene annovar/humandb/
-# you may download dbnsfp42c if you need (they are LARGE)
+```
+
+If you need to annotate dbnsfp (they are LARGE):
+```
 annovar/annotate_variation.pl -buildver hg19 -downdb -webfrom annovar dbnsfp42c annovar/humandb/
 annovar/annotate_variation.pl -buildver hg38 -downdb -webfrom annovar dbnsfp42c annovar/humandb/
 ```
