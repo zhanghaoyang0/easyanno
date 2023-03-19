@@ -29,7 +29,7 @@ tar zxvf annovar.latest.tar.gz
 annovar/annotate_variation.pl -buildver hg38 -downdb -webfrom annovar refGene annovar/humandb/
 ```
 
-If you need to annotate dbnsfp (they are LARGE):
+Download dbnsfp if you need (they are LARGE):
 ```
 annovar/annotate_variation.pl -buildver hg19 -downdb -webfrom annovar dbnsfp42c annovar/humandb/
 annovar/annotate_variation.pl -buildver hg38 -downdb -webfrom annovar dbnsfp42c annovar/humandb/
