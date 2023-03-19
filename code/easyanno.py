@@ -17,12 +17,13 @@ parser.add_argument('--alt_col', type=str, default='A1')
 parser.add_argument('--file_in', type=str, default='./example/df_hg19.txt')
 parser.add_argument('--file_out', type=str, default='./example/df_hg19_annoed.txt')
 parser.add_argument('--only_find_gene', type=str, default='T')
+parser.add_argument('--anno_dbnsfp', type=str, default='F')
 args = parser.parse_args()
 
 build = args.build
 chr_col = args.chr_col; pos_col = args.pos_col; ref_col = args.ref_col; alt_col = args.alt_col
 file_in = args.file_in; file_out = args.file_out
-only_find_gene = args.only_find_gene
+only_find_gene = args.only_find_gene; anno_dbnsfp = args.anno_dbnsfp
 
 # # default setting
 # build = 'hg19'
@@ -32,7 +33,8 @@ only_find_gene = args.only_find_gene
 # alt_col = 'A1'
 # file_in = './example/df_hg19.txt'
 # file_out = './example/df_hg19_annoed.txt'
-# only_find_gene = 'T'
+# only_find_gene = 'F'
+# anno_dbnsfp = 'F'
 
 ###
 print('setting:')
@@ -40,6 +42,7 @@ print('build: '+ build)
 print('chr_col: '+ chr_col); print('pos_col: '+ pos_col); print('ref_col: '+ ref_col); print('alt_col: '+ alt_col)
 print('file_in: '+ file_in); print('file_out: '+ file_out)
 print('only_find_gene: '+ only_find_gene)
+print('anno_dbnsfp: '+ anno_dbnsfp)
 
 only_find_gene = True if only_find_gene =='T' else False
 # id for temp files
@@ -61,15 +64,23 @@ vcf.to_csv('temp/'+temp_id+'.vcf', sep='\t', index=False, header = False)
 
 # annovar
 print(f'using annovar to annotate...')
-annovar_command = f'annovar/table_annovar.pl temp/{temp_id}.vcf annovar/humandb/ -buildver {build} --out temp/{temp_id} \
--remove -protocol refGene -operation g -nastring . -vcfinput -polish'
+
+if anno_dbnsfp == 'F':
+    annovar_command = f'annovar/table_annovar.pl temp/{temp_id}.vcf annovar/humandb/ -buildver {build} --out temp/{temp_id} \
+    -remove -protocol refGene -operation g -nastring . -vcfinput -polish'
+else: 
+    annovar_command = f'annovar/table_annovar.pl temp/{temp_id}.vcf annovar/humandb/ -buildver {build} --out temp/{temp_id} \
+    -remove -protocol refGene,dbnsfp42c -operation g,f -nastring . -vcfinput -polish'
+
 subprocess.Popen(annovar_command, shell=True).wait()
+
 
 # add new pos
 anno = pd.read_csv(f'temp/{temp_id}.{build}_multianno.txt', sep='\t')
-map = anno[['Func.refGene', 'Gene.refGene','GeneDetail.refGene', 'ExonicFunc.refGene', 'AAChange.refGene', anno.columns[-1]]]
-map = map.rename(columns={anno.columns[-1]: 'id'})
-if only_find_gene==True: map.drop(['GeneDetail.refGene', 'ExonicFunc.refGene', 'AAChange.refGene'], axis=1, inplace=True)
+anno = anno.rename(columns={anno.columns[-1]: 'id'})
+map = anno.loc[:, ~anno.columns.str.contains('Otherinfo')]
+
+if only_find_gene==True: map = map[['id', 'Func.refGene', 'Gene.refGene']]
 
 res = df.merge(map, on='id', how='left').drop(['id', 'dot'], axis=1) 
 
