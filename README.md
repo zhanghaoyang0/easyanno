@@ -14,7 +14,7 @@ With `easyanno`, you can use a (tab separated) file (e.g., gwas summary) as inpu
 Versions I used are in bracket (no necessary to be the same).
 
 ## Install ANNOVAR
-Fill the form (https://www.openbioinformatics.org/annovar/annovar_download_form.php), open your email, find the download link (like http://xxx/annovar.latest.tar.gz).
+Follow the [instruction](https://www.openbioinformatics.org/annovar/annovar_download_form.php), obtain the download link (like http://xxx/annovar.latest.tar.gz).
 
 Download ANNOVAR and hg38 refGene:
 ```
