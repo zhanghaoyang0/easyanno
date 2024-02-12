@@ -17,7 +17,8 @@ wget -c http://xxx/annovar.latest.tar.gz
 tar zxvf annovar.latest.tar.gz
 annovar/annotate_variation.pl -buildver hg38 -downdb -webfrom annovar refGene annovar/humandb/
 
-# (Optional) dbNSFP is a database developed for functional prediction. Download it if you need to annotate this information (they are LARGE):
+# (Optional) dbNSFP is a database developed for functional prediction. 
+# Download it if you need to annotate this information (they are LARGE):
 annovar/annotate_variation.pl -buildver hg19 -downdb -webfrom annovar dbnsfp42c annovar/humandb/
 annovar/annotate_variation.pl -buildver hg38 -downdb -webfrom annovar dbnsfp42c annovar/humandb/
 ```
