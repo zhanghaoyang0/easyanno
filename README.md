@@ -10,14 +10,12 @@ With `easyanno`, you can use a (tab separated) file (e.g., gwas summary) as inpu
 Versions I used are in bracket (no necessary to be the same).
 - `ANNOVAR`  
 Follow the [instruction](https://www.openbioinformatics.org/annovar/annovar_download_form.php), obtain the download link (like http://xxx/annovar.latest.tar.gz).
-
 Download ANNOVAR and hg38 refGene:
 ```
 wget -c http://xxx/annovar.latest.tar.gz
 tar zxvf annovar.latest.tar.gz
 annovar/annotate_variation.pl -buildver hg38 -downdb -webfrom annovar refGene annovar/humandb/
 ```
-
 (Optional) dbNSFP is a database developed for functional prediction. Download it if you need to annotate this information (they are LARGE):
 ```
 annovar/annotate_variation.pl -buildver hg19 -downdb -webfrom annovar dbnsfp42c annovar/humandb/
