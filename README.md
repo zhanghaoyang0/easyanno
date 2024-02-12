@@ -11,15 +11,9 @@ With `easyanno`, you can use a (tab separated) file (e.g., gwas summary) as inpu
 - `ANNOVAR`
 - `Python3` (3.9.6) with `pandas` (1.4.3), `numpy` (1.20.3), `argparse`, `os`, `sys`, `time`, `subprocess`  
   
-Versions I used are in bracket
+Versions I used are in bracket (no necessary to be the same).
 
-# Getting Started
-Clone this repository via the commands:
-```  
-git clone https://github.com/zhanghaoyang0/easyanno.git
-cd easyanno
-```
-
+## Install ANNOVAR
 Fill the form (https://www.openbioinformatics.org/annovar/annovar_download_form.php), open your email, find the download link (like http://xxx/annovar.latest.tar.gz).
 
 Download ANNOVAR and hg38 refGene:
@@ -29,10 +23,26 @@ tar zxvf annovar.latest.tar.gz
 annovar/annotate_variation.pl -buildver hg38 -downdb -webfrom annovar refGene annovar/humandb/
 ```
 
-Download dbnsfp if you need (they are LARGE):
+(Optional) dbNSFP is a database developed for functional prediction. Download it if you need to annotate this information (they are LARGE):
 ```
 annovar/annotate_variation.pl -buildver hg19 -downdb -webfrom annovar dbnsfp42c annovar/humandb/
 annovar/annotate_variation.pl -buildver hg38 -downdb -webfrom annovar dbnsfp42c annovar/humandb/
+```
+
+# Getting Started
+Clone this repository via the commands:
+```
+git clone https://github.com/zhanghaoyang0/easyanno.git
+cd easyanno
+```
+Add a soft link of ANNOVAR:
+```
+ln -s path_of_your_annovar/annovar ./
+```
+Check if it link correctly:
+``` 
+ls annovar/ # you will see the script
+ls annovar/humandb/ # you will see the database
 ```
 
 Once the above has completed, you can try to annotate by specifying:  
@@ -52,7 +62,7 @@ Two examples (one for hg19 and one for hg38):
 python ./code/easyanno.py \
 --build hg19 \
 --only_find_gene F \
---anno_dbnsfp T \
+--anno_dbnsfp F \
 --chr_col CHR --pos_col POS --ref_col A2 --alt_col A1 \
 --file_in ./example/df_hg19.txt \
 --file_out ./example/df_hg19_annoed.txt
