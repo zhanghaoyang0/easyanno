@@ -1,9 +1,7 @@
 
 # About easyanno
 `easyanno` is a simple tool to do gene-based annotation (based on refGene) with genomic position.
-
-# Why easyanno 
-I make minor efforts to omit some laborious steps (i.e., prepare annovar input, annotate, and then map back to your files) in the use of `ANNOVAR`.
+I make token efforts to omit some laborious steps (i.e., prepare annovar input, annotate, and then map back to your files) in the use of `ANNOVAR`.
 With `easyanno`, you can use a (tab separated) file (e.g., gwas summary) as input and obtain an output with annotations.
 
 # Requirements 
