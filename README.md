@@ -9,7 +9,7 @@ With `easyanno`, you can use a (tab separated) file (e.g., gwas summary) as inpu
 - `Python3` (3.9.6) with `pandas` (1.4.3), `numpy` (1.20.3), `argparse`, `os`, `sys`, `time`, `subprocess`  
 Versions I used are in bracket (no necessary to be the same).
 - `ANNOVAR`  
-Follow the [instruction](https://www.openbioinformatics.org/annovar/annovar_download_form.php), obtain the download link (like http://xxx/annovar.latest.tar.gz).
+Follow the [instruction](https://www.openbioinformatics.org/annovar/annovar_download_form.php), obtain the download link (like http://xxx/annovar.latest.tar.gz).  
 Download ANNOVAR and hg38 refGene:
 ```
 wget -c http://xxx/annovar.latest.tar.gz
