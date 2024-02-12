@@ -33,14 +33,11 @@ Clone this repository via the commands:
 git clone https://github.com/zhanghaoyang0/easyanno.git
 cd easyanno
 ```
-Add a soft link of ANNOVAR:
+If `annovar/` is not in your `easyanno` folder, add a soft link:
 ```
-ln -s path_of_your_annovar/annovar ./
-```
-Check if it link correctly:
-``` 
-ls annovar/ # you will see the script
-ls annovar/humandb/ # you will see the database
+ln -s path_of_your_annovar ./
+# check if it link correctly
+ls annovar/ # you will see the scripts and data
 ```
 
 Once the above has completed, you can try to annotate by specifying:  
